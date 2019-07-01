@@ -10,13 +10,16 @@ namespace TurtleGraphics.Classes
     {
         int[,] _floor; 
 
+        //holds the turtles current position
         int[] _position = { 0, 0 };
+
         /// <summary>
         /// 0 is up, 1 is right, 2 is down and 3 is left
         /// </summary>
         int _direction = 0;
 
         bool penUp = true;
+
         enum Commands { PenUp, PenDown, TurnRight, TurnLeft, MoveForward, Print, EndOfData }
 
         public Turtle(int[,] floor)
@@ -24,6 +27,18 @@ namespace TurtleGraphics.Classes
             _floor = floor;
         }
 
+        /// <summary>
+        /// reads commands and writes to its floor array. 2d array second dimension is for movement distance * always add a 9 at the end*
+        /// commands are:
+        /// 1 Pen up,
+        /// 2 pen down,
+        /// 3 turn right,
+        /// 4 turn left,
+        /// 5 move forward,
+        /// 6 Print,
+        /// 9 for end of data
+        /// </summary>
+        /// <param name="commands"></param>
         public void ReadCommands(int[,] commands)
         {
             
@@ -88,6 +103,10 @@ namespace TurtleGraphics.Classes
             }
         }
 
+        /// <summary>
+        /// moves the turtle in the direction its facing for the specified distance, writes to the floor based on what direction its facing 
+        /// </summary>
+        /// <param name="distance"></param>
         void MoveForward(int distance)
         {
             for (int i = 0; i < distance; i++)
@@ -130,6 +149,10 @@ namespace TurtleGraphics.Classes
             }
         }
 
+
+        /// <summary>
+        /// prints the floor to the console with characters instead of the ints 
+        /// </summary>
         void Print()
         {
             for (int i = 0; i < _floor.GetLength(0); i++)
